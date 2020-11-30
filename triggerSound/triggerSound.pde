@@ -4,7 +4,7 @@
  */
 
 import processing.sound.*;
-
+float duration;
 SoundFile soundfile;
 boolean mP = false;
 void setup() {
@@ -18,7 +18,7 @@ void setup() {
   println("SFSampleRate= " + soundfile.sampleRate() + " Hz");
   println("SFSamples= " + soundfile.frames() + " samples");
   println("SFDuration= " + soundfile.duration() + " seconds");
-
+  duration = soundfile.frames();
   // Play the file in a loop
   //soundfile.loop();
 }      
@@ -27,14 +27,17 @@ void setup() {
 void draw() {
   background(255);
   if(mousePressed && !mP ){
+   
+    //soundfile.cueFrame(int(random(duration)));
      soundfile.play();
      mP=true;
   }else{
     if(!mousePressed && mP){
       mP=false;
-      soundfile.stop();
+      //soundfile.stop();
     }
   }
+  soundfile.frames();
   fill(0);
   if(mP){
     text("sound is playing" , 50,50);
